@@ -5,7 +5,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
-// 명시적으로 이름을 등록하지 않으면 소문자인 person 으로 등록됨
+// 명시적으로 이름을 등록하지 않으면 소문자인 person으로 등록됨
 @Component
 public class Person {
 	@Value("더조은")
@@ -14,8 +14,8 @@ public class Person {
 	@Value("학원")
 	private String nickname;
 	
-	@Autowired	// 자동으로 객체를 찾아서 bean 으로 등록해줌. 하나일때는 자동으로 등록
-	@Qualifier("printerA")	// 1개 이상일 때는 명시해 줘야됨 
+	@Autowired  // 자동으로 객체를 찾아서 bean으로 등록해줌. 하나일때는 자동으로 등록
+	@Qualifier("printerA")	// 1개 이상일 때는 명시해 줘야됨
 	private Printer printer;
 	
 	public Person() {
