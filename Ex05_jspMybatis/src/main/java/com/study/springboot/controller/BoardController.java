@@ -74,10 +74,11 @@ public class BoardController {
 	 * 	  ex)
 	 * 	   @GetMapping("/detail")
 	 *    public String detailView(int boardno) {
-	 *    
+	 *    Board board = boardService.detailBoard(boardno);
 	 *    }
 	 *    
 	 *    
+	 *    4,5번은 값이 너무 많을때 사용
 	 *    
 	 * 4. @ModelAttribute 어노테이션을 사용하는 방법
 	 *    : 주로 객체를 받을 때 사용
@@ -89,10 +90,19 @@ public class BoardController {
 	 *    		String title = b.getTitle();
 	 *    		b.setWriter = "김나중";
 	 *    }
+	 *    Board b = new Board();
+	 *    b.setTitle(제목);
+	 *    b.setWriter(홍길동);
+	 *    
+	 *    <input name="title">	title=제목
+	 *    <input name="writer">	writer=홍길동
 	 *    
 	 *    
-	 * 5. 커맨드 객체 방식
+	 *    
+	 * 5. 커맨드 객체 방식 *주로 사용함*
 	 * 	  : 객체를 받을 때 사용
+	 * 	  요청시 전달값의 키값(name값)을 bean 클래스에 담고자하는 필드명으로 작성
+	 *    *** 반드시 name과 담고자하는 필드명이 동일해야됨 ***
 	 * 
 	 * 	  ex)
 	 * 	  @GetMapping("/detail")
@@ -119,11 +129,15 @@ public class BoardController {
 	}
 	
 	@PostMapping("/write")
-	public String write(Board b) {
-		String title = b.getTitle();
-		String writer = b.getWriter();
-		String content = b.getContent();
-		
-		return "write";
+	public String write(Board b, Model model) {
+		boardService.insertBoard(b);
+		return "redirect:list"; // Controller에 있는 /list로 가시오
+	}
+	
+	@GetMapping("/delete")
+	public String delete(HttpServletRequest request, Model model) {
+		String bno = request.getParameter("boardno");
+		boardService.deleteBoard(bno);
+		return "redirect:list";
 	}
 }

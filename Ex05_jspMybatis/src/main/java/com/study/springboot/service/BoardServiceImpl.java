@@ -31,14 +31,12 @@ public class BoardServiceImpl implements BoardService {
 
 	@Override
 	public int insertBoard(Board b) {
-		// TODO Auto-generated method stub
-		return 0;
+		return boardDao.insertBoard(b);
 	}
 
 	@Override
 	public int deleteBoard(String boardno) {
-		// TODO Auto-generated method stub
-		return 0;
+		return boardDao.deleteBoard(boardno);
 	}
 
 	

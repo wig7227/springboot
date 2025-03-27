@@ -24,6 +24,7 @@
 <body>
 	<h1 align="center">게 시 판</h1>
 	<p>총 레코드수 : ${totalRecord}</p>
+	
 	<table class="table">
 		<tr>
 			<th>번호</th>
@@ -36,7 +37,7 @@
 				<td>${b.boardno}</td>
 				<td><a href="detail?boardno=${b.boardno}">${b.title}</td>
 				<td>${b.writer}</td>
-				<td><button class="btn btn-outline-danger" type="button">삭제</button></td>
+				<td><button class="btn btn-outline-danger" type="button" onclick="location.href='delete?boardno=${b.boardno}'">삭제</button></td>
 			</tr>
 		</c:forEach>
 	</table>
