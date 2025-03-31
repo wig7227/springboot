@@ -31,11 +31,11 @@ public class MemberService {
 		return memberRepository.findAll();
 	}
 	
-	/*
-	 public Optional<Member> delete(Long id) {
-		return memberRepository.deleteById(id);
+	
+	 public void delete(Long id) {
+		memberRepository.deleteById(id);
 	 }
-	 */
+	 
 	
 	public Member update(Member member) {
 		return memberRepository.save(member);

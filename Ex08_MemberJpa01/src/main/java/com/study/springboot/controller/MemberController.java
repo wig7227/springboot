@@ -73,24 +73,21 @@ public class MemberController {
 	 *      update후 update.jsp로 가기
 	 */
 	
-	/*
+	
 	@RequestMapping("/delete")
-	public String delete(@RequestParam("id") Long id, Model model) {
-		Optional<Member> result = memberService.delete(id);
-		if(result.isPresent()) {	// isPresent() : 데이터 있는지 없는지 체크
-			model.addAttribute("member", result.get());
-		} else {
-			model.addAttribute("member", null);
-		}
+	public String delete(@RequestParam("id") Long id) {
+		memberService.delete(id);
 		return "menu";
 	}
-	*/
+	
 	
 	@RequestMapping("/update")
-	public String update(@RequestParam("username") String name,Model model) {
-		Member member = new Member();
-		member.setUsername(name);
-		
+	public String update(Member member, Model model) {
+		// update시 primary key를 검색하여 키가 있으면 다른 필드 모두 업데이트
+		// update시 기존내용을 업데이트 하지 않는다고 안넣으면 null이 들어감
+		// => select를 하여 그 결과에 update할 내용만 넣으면 됨
+		member.setCreateDate(LocalDate.now());
+		memberService.update(member);
 		Member result = memberService.update(member);
 		model.addAttribute("member", result);
 		return "update";
