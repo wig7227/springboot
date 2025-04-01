@@ -1,7 +1,5 @@
 package com.study.springboot.controller;
 
-import static org.mockito.ArgumentMatchers.matches;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -48,9 +46,20 @@ public class MemberController {
 		return "redirect:/";
 	}
 	
-	@RequestMapping("/Gologin")
-	public String Gologin(Member member) {
-		String pEncode.matches(member.getPassword());
+	
+	
+	@PostMapping("/login")
+	public String login(@RequestParam("id") String id, 
+	                    @RequestParam("password") String password) {
+	    
+	    Member member = memberService.findById(id);
+	   
+	    if (member != null && pEncoder.matches(password, member.getPassword())) {
+	         
+	        return "redirect:/main";
+	    } else {        
+	        return "redirect:/loginForm?error=true"; 
+	    }
 	}
 	
 	/*
