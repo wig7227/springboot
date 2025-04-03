@@ -1,0 +1,1 @@
+insert into member values(jpapaging_seq.nextval, 'user01@test.com', 'user01');

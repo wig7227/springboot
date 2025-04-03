@@ -94,13 +94,12 @@ public class MenuRestController {
 	@PostMapping()
 	public ResponseEntity<?> insertMenu(@RequestBody Menu menu){
 		Menu reMenu = menuService.insertMenu(menu);
-		
 		return ResponseEntity.created(URI.create("/menu/" + reMenu.getId())).build();
 	}
 	
 	@PutMapping()
 	public ResponseEntity<?> updateMenu(@RequestBody Menu menu){
-		Menu reMenu = menuService.updatetMenu(menu);
+		Menu reMenu = menuService.insertMenu(menu);
 		return ResponseEntity.ok(reMenu);
 	}
 }
